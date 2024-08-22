@@ -1,12 +1,28 @@
 import { createBrowserRouter } from "react-router-dom";
 import Add from "../pages/Add.jsx";
-import Home from "../pages/Home.jsx";
-import Edit from "../pages/Edit.jsx";
-import Login from "../pages/Login.jsx";
-import Register from "../pages/Register.jsx";
-import Layout from "../components/Layout.jsx";
-import { Children } from "react";
+//mport Home from "../pages/Home.jsx";
+const Home = lazy (() => import("../pages/Home.jsx"));
+const Add = lazy (() => import("../pages/Add.jsx"));
+const Edit = lazy(() => import("../pages/Edit.jsx"));
+const Login = lazy(() => import("../pages/Login.jsx"));
+const Register = lazy(() => import("../pages/Register.jsx"));
+const Layout = lazy(() => import("../pages/Layout.jsx"));
+//const Home = lazy(() => import("../pages/Home.jsx"));
+//const  = lazy(() => import("../pages/.jsx"));
+//const  = lazy(() => import("../pages/.jsx"));
+//const  = lazy(() => import("../pages/.jsx"));
+
+//import Edit from "../pages/Edit.jsx";
+//import Login from "../pages/Login.jsx";
+//import Register from "../pages/Register.jsx";
+//import Layout from "../components/Layout.jsx";
+import { Children, lazy } from "react";
 import AdminLayout from "./AdminLayout";
+import NotAllowed from "./NotAllowed";
+import ModOrAdminPage from "../pages/ModOrAdminPage.jsx";
+
+
+
 
 const router = createBrowserRouter([
   {
@@ -34,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/notallowed",
+    element: <Notallowed />,
   },
   {
     path: "/dashboard/",

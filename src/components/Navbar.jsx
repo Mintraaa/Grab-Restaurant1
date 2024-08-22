@@ -4,9 +4,22 @@ import RegisterButton from "./RegisterButton";
 import LoginButton from "./LoginButton";
 import UserProfile from "./UserProfile";
 import { useAuthContext } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { user } = useAuthContext();
+  const menus = {
+    ROLES_ADMIN: [
+      { name: "Add restaurant", link: "/add" },
+      { name: "Search", link: "/" },
+      { name: "Dashboard", Link: "/dashboard" },
+    ],
+    ROLES_USER: [{ name: "Search", link: "/" }],
+    ROLES_MODERATOR: [
+      { name: "Add restaurant", link: "/add" },
+      { name: "Search", link: "/search" },
+    ],
+  };
 
   return (
     <div className="navbar bg-base-100 mt-5 mb-10 h-30">
@@ -32,7 +45,13 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
-            <li>
+            {user &&
+              menus[user.roles[0]].map((menuItem) => (
+                <li key={menuItem.name}>
+                  <a href={menuItem.link}>{menuItem.name}</a>
+                </li>
+              ))}
+            {/*<li>
               <a href="/">Home</a>
             </li>
             <li>
@@ -41,6 +60,7 @@ const Navbar = () => {
             <li>
               <a href="#about">About</a>
             </li>
+            */}
           </ul>
         </div>
       </div>
